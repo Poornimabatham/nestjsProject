@@ -1,0 +1,40 @@
+/* Custom styles for signup component */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Error Popup Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.error-popup {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Ensure popup is above other content */
+.fixed {
+  z-index: 1000;
+}
+
+/* Loading state */
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

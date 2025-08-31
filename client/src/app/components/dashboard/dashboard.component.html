@@ -1,0 +1,63 @@
+<div class="min-h-screen bg-gray-100">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="flex-shrink-0 flex items-center">
+            <h1 class="text-xl font-bold text-gray-800">Your App</h1>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <button (click)="logout()" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h2 class="text-2xl font-bold text-gray-900">{{ welcomeMessage }}</h2>
+          <p class="mt-2 text-gray-600">This is your secure dashboard. You can add your content here.</p>
+          
+          <!-- Add your dashboard content here -->
+          <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Example cards -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+              <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Your Stats</h3>
+                <div class="mt-2 text-sm text-gray-500">
+                  <p>Total Users: 0</p>
+                  <p>Active Now: 0</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+              <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Activity</h3>
+                <div class="mt-2 text-sm text-gray-500">
+                  <p>No recent activity</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+              <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Quick Actions</h3>
+                <div class="mt-2">
+                  <button class="text-sm text-indigo-600 hover:text-indigo-500">Add New Item</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
