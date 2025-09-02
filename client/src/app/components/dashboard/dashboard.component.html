@@ -17,6 +17,9 @@
     </div>
   </nav>
 
+  <div class="search-container">
+    <input type="text" placeholder="Search product..." [(ngModel)]="searchTerm" (input)="onSearch()" />
+  </div>
   <!-- Main Content -->
   <main class="py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,38 +27,64 @@
         <div class="px-4 py-5 sm:p-6">
           <h2 class="text-2xl font-bold text-gray-900">{{ welcomeMessage }}</h2>
           <p class="mt-2 text-gray-600">This is your secure dashboard. You can add your content here.</p>
-          
-          <!-- Add your dashboard content here -->
+
+          <!-- Stats -->
           <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- Example cards -->
+            <!-- Stats Card -->
             <div class="bg-white overflow-hidden shadow rounded-lg">
               <div class="px-4 py-5 sm:p-6">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">Your Stats</h3>
                 <div class="mt-2 text-sm text-gray-500">
-                  <p>Total Users: 0</p>
-                  <p>Active Now: 0</p>
+                  <p>Total Users: {{ users.length }}</p>
+                  <!-- <p>Active Now: {{ users.filter(u => u.resetToken === null).length }}</p> -->
                 </div>
               </div>
             </div>
-            
+
+            <!-- Recent Users -->
             <div class="bg-white overflow-hidden shadow rounded-lg">
               <div class="px-4 py-5 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Activity</h3>
-                <div class="mt-2 text-sm text-gray-500">
-                  <p>No recent activity</p>
-                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Users</h3>
+                <ul class="mt-2 text-sm text-gray-500 space-y-1">
+                  <li *ngFor="let user of users | slice:-5">
+                    {{ user.name }} ({{ user.email }})
+                  </li>
+                </ul>
               </div>
             </div>
-            
+
+            <!-- Quick Actions -->
             <div class="bg-white overflow-hidden shadow rounded-lg">
               <div class="px-4 py-5 sm:p-6">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">Quick Actions</h3>
                 <div class="mt-2">
-                  <button class="text-sm text-indigo-600 hover:text-indigo-500">Add New Item</button>
+                  <button class="text-sm text-indigo-600 hover:text-indigo-500">Add New User</button>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Users Table -->
+          <div class="mt-8">
+            <h3 class="text-lg font-semibold text-gray-900">All Users</h3>
+            <table class="min-w-full mt-4 divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Created At</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr *ngFor="let user of users">
+                  <td class="px-6 py-4 text-sm text-gray-900">{{ user.name }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">{{ user.email }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">{{ user.createdAt | date:'short' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
       </div>
     </div>

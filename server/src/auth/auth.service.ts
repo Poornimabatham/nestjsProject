@@ -15,8 +15,9 @@ export interface JwtPayload {
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService,
-    private mailerService: MailerService,
+    private jwtService: JwtService
+    // ,
+    // private mailerService: MailerService,
   ) {}
 
   async validateUser(email: string, password: string): Promise<any> {
@@ -78,20 +79,20 @@ export class AuthService {
     // Send email with reset link (you'll need to configure your email service)
     const resetUrl = `http://your-frontend-url.com/reset-password?token=${resetToken}`;
     
-    try {
-      await this.mailerService.sendMail({
-        to: user.email,
-        subject: 'Password Reset Request',
-        template: 'password-reset',
-        context: {
-          name: user.name,
-          resetUrl,
-        },
-      });
-    } catch (error) {
-      console.error('Error sending password reset email:', error);
-      throw new Error('Failed to send password reset email');
-    }
+    // try {
+    //   await this.mailerService.sendMail({
+    //     to: user.email,
+    //     subject: 'Password Reset Request',
+    //     template: 'password-reset',
+    //     context: {
+    //       name: user.name,
+    //       resetUrl,
+    //     },
+    //   });
+    // } catch (error) {
+    //   console.error('Error sending password reset email:', error);
+    //   throw new Error('Failed to send password reset email');
+    // }
 
     return { message: 'If an account with that email exists, a password reset link has been sent.' };
   }

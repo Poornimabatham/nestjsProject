@@ -17,12 +17,16 @@ export class User {
 
   @Prop({ required: true })
   password: string;
+  // ❌ This likely caused the error
+  // resetToken?: string | null;
 
-  @Prop()
-  resetToken?: string | null;
+  // ✅ Fix by specifying type
+  @Prop({ type: String, default: null })
+  resetToken: string | null;
 
-  @Prop()
-  resetTokenExpiry?: Date;
+  @Prop({ type: Date, default: null })
+  resetTokenExpiry: Date | null;
 }
+
 
 export const UserSchema = SchemaFactory.createForClass(User);

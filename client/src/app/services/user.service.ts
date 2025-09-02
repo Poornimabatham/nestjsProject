@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 
 export interface SignupData {
@@ -51,5 +51,14 @@ export class UserService {
         return throwError(() => new Error(errorMessage));
       })
     );
+  }
+
+  getProducts(search?: string): Observable<any> {
+    let params = new HttpParams();
+    
+    if (search) {
+      params = params.set('search', search);
+    }
+  return this.http.get('http://localhost:3000/products', { params });
   }
 }
